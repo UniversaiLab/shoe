@@ -19,11 +19,7 @@ export function UnifiedControlBar({
   nikeFilter,
   onFilterChange,
 }) {
-  const collections = [
-    "Nike",
-    "New Balance",
-    "Under $150",
-  ];
+  const collections = ["Nike", "New Balance", "Under $150"];
 
   const nikeFilters = [
     { id: "all", label: "All" },
@@ -46,7 +42,7 @@ export function UnifiedControlBar({
         pointerEvents: "none",
       }}
     >
-      {/* 
+      {/*
         THE ISLAND CONTAINER
         - layout: Animates width/height changes
         - borderRadius: 32px is standard for pill shapes
@@ -72,9 +68,9 @@ export function UnifiedControlBar({
           overflow: "hidden", // Crucial for clipping content during resize
         }}
       >
-        {/* 
-          mode="popLayout" is CRITICAL. 
-          It lets the outgoing component "pop" out of the layout flow 
+        {/*
+          mode="popLayout" is CRITICAL.
+          It lets the outgoing component "pop" out of the layout flow
           so the container can instantly shrink/grow to the new content's size.
         */}
         <AnimatePresence mode="popLayout" initial={false}>
@@ -252,7 +248,9 @@ export function UnifiedControlBar({
                       <FilterChip
                         key={filter.id}
                         isActive={nikeFilter === filter.id}
-                        onClick={() => onFilterChange(filter.id)}
+                        onClick={() =>
+                          onFilterChange(filter.id)
+                        }
                         layoutGroup="desktop"
                       >
                         {filter.label}
@@ -261,7 +259,6 @@ export function UnifiedControlBar({
                   </motion.div>
                 </div>
               )}
-
             </motion.div>
           )}
         </AnimatePresence>
@@ -269,51 +266,59 @@ export function UnifiedControlBar({
 
       {/* Mobile Nike Filters - appears above main bar */}
       <AnimatePresence>
-        {currentCollection === 0 && !isZoomedIn && !hasActiveSelection && (
-          <motion.div
-            className="mobile-filters"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={islandTransition}
-            style={{
-              position: "absolute",
-              bottom: "70px",
-              left: 0,
-              right: 0,
-              display: "none", // Hidden by default, shown on mobile via CSS
-              justifyContent: "center",
-              pointerEvents: "none",
-            }}
-          >
-            <div
+        {currentCollection === 0 &&
+          !isZoomedIn &&
+          !hasActiveSelection && (
+            <motion.div
+              className="mobile-filters"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={islandTransition}
               style={{
-                display: "flex",
+                position: "absolute",
+                bottom: "70px",
+                left: 0,
+                right: 0,
+                display: "none", // Hidden by default, shown on mobile via CSS
                 justifyContent: "center",
-                background: "rgba(255, 255, 255, 0.85)",
-                backdropFilter: "blur(40px) saturate(200%)",
-                WebkitBackdropFilter: "blur(40px) saturate(200%)",
-                borderRadius: "20px",
-                border: "1px solid rgba(255, 255, 255, 0.3)",
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-                padding: "6px 8px",
-                gap: "4px",
-                pointerEvents: "auto",
+                pointerEvents: "none",
               }}
             >
-              {nikeFilters.map((filter) => (
-                <FilterChip
-                  key={`mobile-${filter.id}`}
-                  isActive={nikeFilter === filter.id}
-                  onClick={() => onFilterChange(filter.id)}
-                  layoutGroup="mobile"
-                >
-                  {filter.label}
-                </FilterChip>
-              ))}
-            </div>
-          </motion.div>
-        )}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  background: "rgba(255, 255, 255, 0.85)",
+                  backdropFilter:
+                    "blur(40px) saturate(200%)",
+                  WebkitBackdropFilter:
+                    "blur(40px) saturate(200%)",
+                  borderRadius: "20px",
+                  border:
+                    "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow:
+                    "0 4px 20px rgba(0, 0, 0, 0.08)",
+                  padding: "6px 8px",
+                  gap: "4px",
+                  pointerEvents: "auto",
+                }}
+              >
+                {nikeFilters.map((filter) => (
+                  <FilterChip
+                    key={`mobile-${filter.id}`}
+                    isActive={nikeFilter === filter.id}
+                    onClick={() =>
+                      onFilterChange(filter.id)
+                    }
+                    layoutGroup="mobile"
+                  >
+                    {filter.label}
+                  </FilterChip>
+                ))}
+              </div>
+            </motion.div>
+          )}
       </AnimatePresence>
 
       {/* Responsive scaling for shorter viewports (tablets) and mobile */}
@@ -492,7 +497,12 @@ function TabButton({ children, isActive, onClick }) {
   );
 }
 
-function FilterChip({ children, isActive, onClick, layoutGroup = "default" }) {
+function FilterChip({
+  children,
+  isActive,
+  onClick,
+  layoutGroup = "default",
+}) {
   return (
     <motion.button
       layout
