@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CONFIG } from "./grid/gridConfig";
+import { useStore } from "@/store/gridstore";
 // 1. THE PHYSICS
 // High stiffness, moderate damping = "Snappy but smooth" (Apple feel)
 const islandTransition = {
@@ -19,7 +20,10 @@ export function UnifiedControlBar({
   nikeFilter,
   onFilterChange,
 }) {
-  const collections = ["Nike", "New Balance", "Under $150"];
+  const collections = useStore(
+    (state) => state.collections
+  );
+  // const collections = ["Nike", "New Balance", "Under $150"];
 
   const nikeFilters = [
     { id: "all", label: "All" },

@@ -10,7 +10,12 @@ export const useStore = create((set) => ({
   isCartOpen: false,
   isSettingsOpen: false,
 
-  collections: ["Nike", "New Balance", "Under $150"],
+  collections: [
+    "Nike",
+    "New Balance",
+    "Under $150",
+    "Bingo",
+  ],
 
   theme: {
     backgroundMode: "topology", // 'topology', 'color', 'image'

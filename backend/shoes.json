@@ -1294,5 +1294,15 @@
     "brand": "New Balance",
     "primary_color": "teal",
     "primary_color_hex": "#245254"
+  },
+
+  {
+    "title": "Teddy Santis x New Balance 990v6 Made in USA 'Community Pack - Mint'",
+    "price": "$118",
+    "image_url": "/shoes/shoe-143.png",
+    "product_url": "https://www.goat.com/sneakers/teddy-santis-x-990v6-made-in-usa-clay-ash-u990gt6",
+    "brand": "Bingo",
+    "primary_color": "teal",
+    "primary_color_hex": "#245254"
   }
 ]
