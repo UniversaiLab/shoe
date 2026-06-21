@@ -1,5 +1,6 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { useStore } from "@/store/gridstore";
 
 // Dynamic import to avoid SSR issues with R3F
 const ShoeGrid = dynamic(
@@ -10,10 +11,12 @@ const ShoeGrid = dynamic(
 );
 
 export default function HomePage() {
+  const { appTitle } = useStore();
+
   return (
     <>
       <Head>
-        <title>Shoe Finder</title>
+        <title>{appTitle}</title>
         <meta
           name="description"
           content="Explore our endless collection of sneakers"

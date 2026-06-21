@@ -25,6 +25,8 @@ import { UnifiedControlBar } from "../GridUI";
 import Header from "../Header";
 import { TopologyBackground } from "../TopologyBackground";
 import "../HoloCardMaterial"; // Registers <holoCardMaterial /> with R3F
+import SettingsPanel from "../settingPanel";
+import CartPanel from "../cartPanel";
 
 // --- PRELOAD ALL TEXTURES ---
 // This ensures all shoe images are cached before switching collections
@@ -226,6 +228,8 @@ export default function ShoeGrid() {
     >
       <Leva collapsed={true} hidden={false} />
       <Header />
+      <CartPanel />
+      <SettingsPanel />
       <Canvas
         camera={{ position: [0, 0, initialZoom], fov: 45 }}
         dpr={[1, 2]}

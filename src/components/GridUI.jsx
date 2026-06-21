@@ -23,6 +23,9 @@ export function UnifiedControlBar({
   const collections = useStore(
     (state) => state.collections
   );
+
+  const { toggleCart, addToCart, currentSelect } =
+    useStore();
   // const collections = ["Nike", "New Balance", "Under $150"];
 
   const nikeFilters = [
@@ -103,6 +106,12 @@ export function UnifiedControlBar({
               }}
               onClick={() => {
                 // Handle buy now action
+
+                console.log("clicked one");
+                console.log(currentCollection);
+
+                addToCart(currentSelect);
+                toggleCart();
               }}
               style={{
                 background: "#000",

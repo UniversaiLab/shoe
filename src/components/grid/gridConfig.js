@@ -54,7 +54,9 @@ export const DEFAULT_CONFIG = {
   filterScaleTarget: 0.5, // Scale target when filtered out (smaller = more dramatic shrink)
 
   // Tech Background
-  bgColor: "#e0e0e0",
+  //  bgColor: "#e0e0e0",
+
+  bgColor: "#000000",
   bgOpacity: 0.4,
   bgSpeed: 0.05,
   bgScale: 3.0,

@@ -9,6 +9,9 @@ export const useStore = create((set) => ({
   cart: [],
   isCartOpen: false,
   isSettingsOpen: false,
+  appTitle: "shop defined app title",
+  appFav: "gonna handle app favIcon",
+  currentSelect: null,
 
   collections: [
     "Nike",
@@ -28,6 +31,10 @@ export const useStore = create((set) => ({
   // Actions
   addToCart: (shoe) =>
     set((state) => ({ cart: [...state.cart, shoe] })),
+
+  setCurrentSelect: (shoe) =>
+    set((state) => ({ currentSelect: shoe })),
+
   removeFromCart: (index) =>
     set((state) => ({
       cart: state.cart.filter((_, i) => i !== index),
@@ -38,6 +45,12 @@ export const useStore = create((set) => ({
     set((state) => {
       collection: [...state.collection, value];
     }),
+
+  changeAppTitle: (value) => {
+    return set((state) => {
+      appTitle: value;
+    });
+  },
 
   toggleCart: () =>
     set((state) => ({

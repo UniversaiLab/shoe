@@ -54,18 +54,35 @@ export default function CartPanel() {
               // Ensure we extract the numerical ID for the image correctly
               const idStr =
                 String(item.id).replace(/\D/g, "") || "000";
-              const imagePath = `/shoes/shoe-${idStr.padStart(3, "0")}.png`;
+              const imagePath = item.image_url;
 
               return (
+                // <div
+                //   key={idx}
+                //   className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] p-4 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08]"
+                // >
+
                 <div
                   key={idx}
-                  className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] p-4 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08]"
+                  className="group flex items-center justify-between rounded-xl border p-4 transition-all duration-300"
+                  style={{
+                    borderColor: `${item.pimary_color_hex}33`,
+                    background: `linear-gradient(135deg, ${item.primary_color_hex}11 0%, ${item.primary_color_hex}05 100%)`,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = `${item.primary_color_hex}66`;
+                    e.currentTarget.style.background = `linear-gradient(135deg, ${item.primary_color_hex}22 0%, ${item.primary_color_hex}11 100%)`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = `${item.primary_color_hex}33`;
+                    e.currentTarget.style.background = `linear-gradient(135deg, ${item.primary_color_hex}11 0%, ${item.primary_color_hex}05 100%)`;
+                  }}
                 >
                   <div className="flex items-center gap-4">
                     <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gradient-to-br from-white/10 to-transparent p-2">
                       <img
                         src={imagePath}
-                        alt={item.name}
+                        alt={item.title}
                         className="h-full w-full object-contain drop-shadow-lg"
                         onError={(e) => {
                           e.target.style.display = "none";
@@ -74,16 +91,16 @@ export default function CartPanel() {
                     </div>
                     <div>
                       <p className="text-sm font-bold tracking-widest uppercase">
-                        {item.name}
+                        {item.title}
                       </p>
                       <p className="mt-1 text-xs tracking-wider text-white/50">
-                        ${item.price}
+                        {item.price}
                       </p>
                     </div>
                   </div>
                   <button
                     onClick={() => removeFromCart(idx)}
-                    className="p-2 text-xs tracking-widest text-white/30 uppercase transition-colors hover:text-red-400"
+                    className="text-red p-2 text-xs tracking-widest uppercase transition-colors hover:text-red-400"
                   >
                     <svg
                       className="h-5 w-5"
@@ -114,7 +131,9 @@ export default function CartPanel() {
               <span className="font-bold tracking-wider">
                 $
                 {cart.reduce(
-                  (acc, item) => acc + item.price,
+                  (acc, item) =>
+                    acc +
+                    parseFloat(item.price.replace("$", "")),
                   0
                 )}
               </span>
